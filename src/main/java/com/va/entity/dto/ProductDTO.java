@@ -1,5 +1,6 @@
 package com.va.entity.dto;
 
+import com.va.entity.Product;
 import lombok.*;
 
 import javax.validation.constraints.*;
@@ -10,6 +11,7 @@ import java.math.BigInteger;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ProductDTO implements Serializable {
+    Integer productId;
     @NotBlank(message = "Điền vào tên sản phẩm")
     @NotEmpty(message = "Điền vào tên sản phẩm")
     @NotNull(message = "Điền vào tên sản phẩm")
@@ -28,6 +30,12 @@ public class ProductDTO implements Serializable {
     @NotNull(message = "Điền vào mô tả của sản phẩm")
     String description;
 
+    Integer quantity;
+
     String productUrl;
+
+    public Product toEntity() {
+        return new Product(productName, cost, insurance, description, quantity, productUrl);
+    }
 
 }

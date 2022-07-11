@@ -52,10 +52,12 @@ public class ProductServiceImpl implements ProductService {
             throw new BusinessException(HttpStatusConstants.PRODUCT_EXISTS_CODE,HttpStatusConstants.PRODUCT_EXISTS_MESSAGE);
         }
         try {
-            Product product = productMapper.toEntity(productDTO);
+            //Product product = productMapper.toEntity(productDTO);
+            Product product = productDTO.toEntity();
             productRepo.save(product);
             return product;
         }catch(Exception e){
+            e.printStackTrace();
             throw new BusinessException(HttpStatusConstants.CREATE_PRODUCT_FAILURE_CODE,HttpStatusConstants.CREATE_PRODUCT_FAILURE_MESSAGE);
         }
     }
@@ -70,6 +72,7 @@ public class ProductServiceImpl implements ProductService {
             product.setCost(productDTO.getCost());
             product.setDescription(productDTO.getDescription());
             product.setInsurance(productDTO.getInsurance());
+            product.setQuantity(productDTO.getQuantity());
             product.setProductUrl(productDTO.getProductUrl());
             Product product0 = getProductByName(product.getProductName());
             if(product0 != null){

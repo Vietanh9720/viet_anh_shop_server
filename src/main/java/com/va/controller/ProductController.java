@@ -14,6 +14,7 @@ import javax.validation.Valid;
 @RestController
 @Slf4j
 @RequestMapping(value = "api/v1/products")
+@CrossOrigin("*")
 public class ProductController {
     @Autowired
     private ProductService productService;
@@ -41,7 +42,7 @@ public class ProductController {
     }
 
     @DeleteMapping
-    public ProjectResponse<?> deleteProduct(@Valid @RequestParam(name = "id") Integer id) {
+    public ProjectResponse<?> deleteProduct(@Valid @RequestParam(name = "productId") Integer id) {
         productService.deleteProduct(id);
         return ProjectResponse.ok(true);
     }

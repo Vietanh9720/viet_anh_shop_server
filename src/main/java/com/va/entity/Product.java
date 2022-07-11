@@ -34,8 +34,18 @@ public class Product implements Serializable {
     @Column(name = "description")
     String description;
 
+    @Column(name = "quantity")
+    Integer quantity;
+
     @Column(name = "product_url")
     String productUrl;
 
-
+    public Product(String productName, BigInteger cost, Integer insurance, String description, Integer quantity, String productUrl) {
+        this.productName = productName;
+        this.cost = cost;
+        this.insurance = insurance;
+        this.description = description;
+        this.quantity = quantity;
+        this.productUrl = productUrl;
+    }
 }
